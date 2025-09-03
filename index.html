@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ TUNEII</title>
+  <style>
+    /* Reset bàsic */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Contenidor del vídeo */
+    #intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background: black;
+    }
+
+    #intro video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contingut principal ocult fins que acabi el vídeo */
+    #content {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    #content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 20px 0;
+      font-weight: normal;
+    }
+
+    /* Formulari JotForm */
+    .form-container {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro amb vídeo -->
+  <div id="intro">
+    <video autoplay muted playsinline>
+      <source src="intro.mp4" type="video/mp4">
+      El teu navegador no suporta vídeo HTML5.
+    </video>
+  </div>
+
+  <!-- Contingut principal -->
+  <div id="content">
+    <h1>DJ TUNEII</h1>
+    <h1>DJ TUNEII</h1>
+    <h2>"Tria a un DJ per les habilitats, no per l'edat"</h2>
+
+    <div class="form-container">
+      <script type="text/javascript" src="https://form.jotform.com/jsform/252435833687063"></script>
+    </div>
+  </div>
+
+  <script>
+    const video = document.querySelector("#intro video");
+    const intro = document.getElementById("intro");
+    const content = document.getElementById("content");
+
+    video.addEventListener("ended", () => {
+      intro.style.display = "none"; // amaga el vídeo
+      content.classList.add("show"); // mostra el contingut amb animació
+    });
+  </script>
+</body>
+</html>
