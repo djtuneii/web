@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DJ TUNEII</title>
   <style>
-    /* Estils bàsics i reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
+      margin: 0;
       background: black;
       color: white;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
-    /* Contenidor del vídeo */
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -26,12 +20,6 @@
       z-index: 10;
       background: black;
     }
-    #intro video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    /* Contingut principal ocult fins que s’acabi el vídeo */
     #content {
       opacity: 0;
       transform: translateY(50px);
@@ -43,28 +31,19 @@
       opacity: 1;
       transform: translateY(0);
     }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-      font-weight: normal;
-    }
-    .form-container {
-      margin-top: 40px;
-    }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+    h2 { font-size: 2rem; margin-bottom: 40px; font-weight: normal; }
   </style>
 </head>
 <body>
-
-  <!-- Intro amb vídeo -->
+  <!-- Intro amb iframe de Streamable -->
   <div id="intro">
-    <video autoplay muted playsinline>
-      <source src="https://drive.google.com/uc?export=download&id=1pv2Y_78HbT4TdV9g5VZSep37Wov2x26x" type="video/mp4">
-      El teu navegador no suporta vídeo HTML5.
-    </video>
+    <div style="position:relative; width:100%; height:100%;">
+      <iframe allow="fullscreen;autoplay" allowfullscreen 
+        src="https://streamable.com/e/dbg09x?autoplay=1&nocontrols=1" 
+        style="border:none; width:100%; height:100%; position:absolute; left:0; top:0; overflow:hidden;">
+      </iframe>
+    </div>
   </div>
 
   <!-- Contingut principal -->
@@ -78,14 +57,11 @@
   </div>
 
   <script>
-    const video = document.querySelector("#intro video");
-    const intro = document.getElementById("intro");
-    const content = document.getElementById("content");
-
-    video.addEventListener("ended", () => {
-      intro.style.display = "none"; // oculta el vídeo
-      content.classList.add("show"); // mostra el contingut amb animació
-    });
+    // Espera 39 segons (39000 ms) i mostra el contingut
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("content").classList.add("show");
+    }, 39000);
   </script>
 </body>
 </html>
